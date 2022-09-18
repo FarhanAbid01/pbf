@@ -57,62 +57,70 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: 5.h,
                     ),
-                    Container(
-                      height: height * 0.1,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Row(
-                          children: [
-                            Image.asset('assets/QRcode.png'),
-                            SizedBox(
-                              width: 20.w,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text('Francis Longo', style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 30
-                                ),),
-                                Row(
-                                  children: [
-                                    Text('SOLDRZ', style: TextStyle(
-                                      fontSize: 30,
-                                      color: Colors.grey.shade500
-                                    ),),
-                                    SizedBox(
-                                      width: 10.w,
-                                    ),
-                                    Text('#', style: TextStyle(
+                    Flexible(
+                      fit: FlexFit.tight,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: Row(
+                            children: [
+                              Image.asset('assets/QRcode.png'),
+                              SizedBox(
+                                width:
+                                15.w,
+                              ),
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('Francis Longo', style: TextStyle(
+                                        fontWeight: FontWeight.bold,
                                         fontSize: 30
-                                    ),),
-                                    Text('12', style: TextStyle(
-                                        fontSize: 30,
-                                        color: Colors.grey.shade500
-                                    ),),
-                                    SizedBox(
-                                      width: 15.w,
-                                    ),
-                                    Text('WINS:179', style: TextStyle(
-                                        fontSize: 23
-                                    ),),
-                                  ],
-                                )
-                              ],
-                            )
-                          ],
+                                      ),),
+                                      Row(
+                                        children: [
+                                          Text('SOLDRZ', style: TextStyle(
+                                            fontSize: 30,
+                                            color: Colors.grey.shade500
+                                          ),),
+                                          SizedBox(
+                                            width: 10.w,
+                                          ),
+                                          Text('#', style: TextStyle(
+                                              fontSize: 30
+                                          ),),
+                                          Text('12', style: TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.grey.shade500
+                                          ),),
+                                          SizedBox(
+                                            width: 10.w,
+                                          ),
+                                          Text('WINS:179', style: TextStyle(
+                                              fontSize: 23
+                                          ),),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     )
                   ],
                 )),
             Expanded(
-              flex: 14,
+              flex: 13,
               child: PageView(
                 onPageChanged: (index) {
                   currentindex = index;
@@ -311,7 +319,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                 ],
               ),),
-            Spacer(flex: 2,)
+            Spacer(flex: 1
+              ,)
           ],
         ),
       )),
