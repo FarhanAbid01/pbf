@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pbf_app/view/map.dart';
+import 'package:pbf_app/view/maps_screen.dart';
+import 'package:pbf_app/widgets/menu_bottomsheet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,15 +26,15 @@ class _HomeScreenState extends State<HomeScreen> {
     final width= MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SafeArea(child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20.h,
-            ),
-            Expanded(
-                flex: 5,
+      body: SafeArea(child: Column(
+        children: [
+          SizedBox(
+            height: 20.h,
+          ),
+          Expanded(
+              flex: 6,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Column(
                   children: [
                     Row(
@@ -42,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: width * 0.75,
                           child: TextFormField(
                             decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(top: 3, left: 8),
                                 hintText: 'search the federation',
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
@@ -65,15 +69,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 16.0),
+                          padding: const EdgeInsets.only(left: 8.0),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Image.asset('assets/QRcode.png'),
-                              SizedBox(
-                                width:
-                                15.w,
-                              ),
                               Expanded(
+                                  flex: 2,
+                                  child: Image.asset('assets/QRcode.png')),
+                              Spacer(flex: 1,),
+                              Expanded(
+                                flex: 12,
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Column(
@@ -82,29 +87,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                     children: [
                                       Text('Francis Longo', style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 30
+                                        fontSize: 35.sp,
+                                        fontFamily: 'BebasNeue'
                                       ),),
                                       Row(
                                         children: [
                                           Text('SOLDRZ', style: TextStyle(
-                                            fontSize: 30,
-                                            color: Colors.grey.shade500
+                                            fontSize: 32.sp,
+                                            fontFamily: 'BebasNeue',
                                           ),),
                                           SizedBox(
                                             width: 10.w,
                                           ),
                                           Text('#', style: TextStyle(
-                                              fontSize: 30
+                                              fontSize: 28.sp
                                           ),),
                                           Text('12', style: TextStyle(
-                                              fontSize: 30,
-                                              color: Colors.grey.shade500
+                                              fontSize: 32.sp,
+                                            fontFamily: 'BebasNeue',
                                           ),),
                                           SizedBox(
                                             width: 10.w,
                                           ),
                                           Text('WINS:179', style: TextStyle(
-                                              fontSize: 23
+                                              fontSize: 32.sp,
+                                            fontFamily: 'BebasNeue',
                                           ),),
                                         ],
                                       ),
@@ -118,229 +125,376 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     )
                   ],
-                )),
-            Expanded(
-              flex: 13,
-              child: PageView(
-                onPageChanged: (index) {
-                  currentindex = index;
-                  setState(() {
-
-                  });
-                },
-                children: [
-                  Column(
+                ),
+              )),
+          Expanded(
+            flex: 15,
+            child: PageView(
+              controller: pageController,
+              onPageChanged: (index) {
+                currentindex = index;
+                setState(() {
+                });
+              },
+              children: [
+                SingleChildScrollView(
+                  child: Column(
                     children: [
                       Text('RECENT GAMES', style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold
+                        fontSize: 40.sp,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'BebasNeue',
                       ),),
                       SizedBox(
                         height: 10.h,
                       ),
-                      Container(
-                        height: height * 0.1,
-                        width: width * 0.9,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.white)
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: width * 0.18,
+                      ListView.builder(
+                        physics: ScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                          itemCount: 12,
+                          itemBuilder: (context , index){
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0 , left: 16, right: 16),
+                          child: Container(
+                            height: height * 0.11,
+                            width: width * 0.9,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(color: Colors.white)
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                            child: Stack(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 16.0),
-                                  child: Text('Center flag -castle '.toUpperCase(), style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 19
-                                  ),),
+                                Container(
+                                  child: Image.asset('assets/wallpaper.png', fit: BoxFit.contain,),
                                 ),
-                                SizedBox(
-                                  height: 5.h,
+                                Row(
+                                  children: [
+                                    Spacer(flex: 1,),
+                                    Expanded(
+                                      flex: 5,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            child: Align(
+                                              alignment: Alignment.center
+                                              ,child: Text('Center flag -castle '.toUpperCase(),
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 25.sp,
+                                                  fontFamily: 'BebasNeue',
+                                              ),),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text('Cousins Paintball, NJ',style: TextStyle(
+                                                fontSize: 17.sp,
+                                              fontFamily: 'Segoe UI',
+                                            ),),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Image.asset('assets/window.png'))
+                                  ],
                                 ),
-                                Text('Cousins Paintball, NJ',style: TextStyle(
-                                  fontSize: 17
-                                ),)
                               ],
                             ),
-                            SizedBox(
-                              width: 20.w,
-                            ),
-                            Image.asset('assets/window.png')
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Container(
-                        height: height * 0.1,
-                        width: width * 0.9,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.white)
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: width * 0.18,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 16.0),
-                                  child: Text('Center flag -castle '.toUpperCase(), style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 19
-                                  ),),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                Text('Cousins Paintball, NJ',style: TextStyle(
-                                    fontSize: 17
-                                ),)
-                              ],
-                            ),
-                            SizedBox(
-                              width: 20.w,
-                            ),
-                            Image.asset('assets/window.png')
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Container(
-                        height: height * 0.1,
-                        width: width * 0.9,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.white)
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: width * 0.18,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 16.0),
-                                  child: Text('Center flag -castle '.toUpperCase(), style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 19
-                                  ),),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                Text('Cousins Paintball, NJ',style: TextStyle(
-                                    fontSize: 17
-                                ),)
-                              ],
-                            ),
-                            SizedBox(
-                              width: 20.w,
-                            ),
-                            Image.asset('assets/window.png')
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Container(
-                        height: height * 0.1,
-                        width: width * 0.9,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.white)
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: width * 0.18,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 16.0),
-                                  child: Text('Center flag -castle '.toUpperCase(), style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 19
-                                  ),),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                Text('Cousins Paintball, NJ',style: TextStyle(
-                                    fontSize: 17
-                                ),)
-                              ],
-                            ),
-                            SizedBox(
-                              width: 20.w,
-                            ),
-                            Image.asset('assets/window.png')
-                          ],
-                        ),
-                      ),
+                          ),
+                        );
+                      })
                     ],
                   ),
-                  Container(
-                    color: Colors.blue,
+                ),
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Text('MISSIONS', style: TextStyle(
+                        fontSize: 40.sp,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'BebasNeue',
+                      ),),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      ListView.builder(
+                        physics: ScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                          itemCount: 12,
+                          itemBuilder: (context , index){
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0 , left: 16, right: 16),
+                          child: Container(
+                            height: height * 0.05,
+                            width: width * 0.9,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(color: Colors.white),
+                            ),
+                            child: Stack(
+                              children: [
+                                Opacity(
+                                  opacity: 0.5,
+                                  child: Container(
+                                    clipBehavior: Clip.hardEdge,
+                                    decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: Colors.white),
+                                  ),
+                                    child: LinearProgressIndicator(
+                                      value: 5/10,
+                                      color: Colors.yellow,
+                                      minHeight: height * 0.05,
+                                      backgroundColor: Colors.transparent,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                                  child: Center(
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('Win 10 games on Castle',
+                                        style: TextStyle(
+                                          fontFamily: 'Segoe UI',
+                                        ),),
+                                        Text('5/10'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      })
+                    ],
+                  ),
+                ),
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('LEADERBOARD', style: TextStyle(
+                              fontSize: 40.sp,
+                              fontWeight: FontWeight.bold,
+                            fontFamily: 'BebasNeue',
+                          ),),
+                          Icon(Icons.leaderboard ,size: 30,)
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      ListView.builder(
+                          physics: ScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: 12,
+                          itemBuilder: (context , index){
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0 , left: 16, right: 16),
+                              child: Container(
+                                  height: height * 0.05,
+                                  width: width * 0.9,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: Colors.white),
+                                  ),
+                                  child:Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          child: Row(
+                                            children: [
+                                              Text('37.', style: TextStyle(
+                                                  fontSize: 20.sp,
+                                                  fontWeight: FontWeight.bold
+                                              ),),
+                                              Image.asset('assets/profile_pic.png'),
+                                              Text('FRANCIS LONGO',style: TextStyle(
+                                                  fontSize: 16.sp,
+                                                fontFamily: 'BebasNeue',
+                                              ),),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Text('wins',style: TextStyle(
+                                              fontWeight: FontWeight.w200,
+                                              fontSize: 10.sp,
+                                              fontFamily: 'Segoe UI',
+                                            ),),
+                                            Text('179',style: TextStyle(
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'BebasNeue',
+                                            ),),
+                                          ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                              ),
+                            );
+                          })
+                    ],
+                  ),
+                ),
+            mapScreen()
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for(int i = 0; i <4 ; i++)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: buildIndicator(currentindex == i),
                   )
+              ],
+            ),),
+          Spacer(flex: 1
+            ,),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              child: Row(
+                children: [
+                  Container(
+                    width: width * 0.2,
+                    child: Column(
+                      children: [
+                        IconButton(onPressed: (){
+                          pageController?.jumpToPage(0);
+                        }, icon: Icon(Icons.home , size: 30,)),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 6.0),
+                          child: Text('Home', style: TextStyle(
+                            fontSize: 11.sp
+                          ),),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: width * 0.2,
+                    child: Column(
+                      children: [
+                        IconButton(onPressed: (){
+                          pageController?.jumpToPage(1);
+                        }, icon: Icon(Icons.shopping_bag , size: 30,)),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 6.0),
+                          child: Text('Stats', style: TextStyle(
+                              fontSize: 11.sp
+                          ),),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: width * 0.2,
+                    child: Column(
+                      children: [
+                        IconButton(onPressed: (){
+                          menubottomSheet(context: context);
+                        }, icon: Icon(Icons.menu , size: 30,)),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 6.0),
+                          child: Text('Menu', style: TextStyle(
+                              fontSize: 11.sp
+                          ),),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: width * 0.2,
+                    child: Column(
+                      children: [
+                        IconButton(onPressed: (){
+                          pageController?.jumpToPage(2);
+                        }, icon: Icon(Icons.leaderboard , size: 30,)),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 6.0),
+                          child: Text('LeaderBoard', style: TextStyle(
+                              fontSize: 10.sp
+                          ),),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width:  width * 0.2,
+                    child: Column(
+                      children: [
+                        IconButton(onPressed: (){
+                          pageController?.jumpToPage(3);
+                        }, icon: Icon(Icons.public , size: 30,)),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 6.0),
+                          child: Text('Map', style: TextStyle(
+                              fontSize: 11.sp
+                          ),),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-            SizedBox(
-              height: 10.h,
-            ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  for(int i = 0; i <3 ; i++)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10.0),
-                      child: buildIndicator(currentindex == i),
-                    )
-                ],
-              ),),
-            Spacer(flex: 1
-              ,)
-          ],
-        ),
+          )
+        ],
       )),
-      bottomNavigationBar: new Theme(
-    data: Theme.of(context).copyWith(
-    canvasColor: Colors.transparent,
-          textTheme: Theme
-              .of(context)
-              .textTheme
-              .copyWith(caption: new TextStyle(color: Colors.white))),
-    child: new BottomNavigationBar(
-      iconSize: 30,
-          items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home , color: Colors.white,), label: 'Home',),
-        BottomNavigationBarItem(icon: Icon(Icons.shopping_bag, color: Colors.white,), label: 'Stats'),
-        BottomNavigationBarItem(icon: Icon(Icons.menu_outlined, color: Colors.white), label: 'Menu'),
-        BottomNavigationBarItem(icon: Icon(Icons.leaderboard, color: Colors.white), label: 'LeaderBoard'),
-        BottomNavigationBarItem(icon: Icon(Icons.public, color: Colors.white), label: 'Map'),
-      ]),
-      ));
+    //   bottomNavigationBar: new Theme(
+    // data: Theme.of(context).copyWith(
+    // canvasColor: Colors.transparent,
+    //       textTheme: Theme
+    //           .of(context)
+    //           .textTheme
+    //           .copyWith(caption: new TextStyle(color: Colors.white))),
+    // child: new BottomNavigationBar(
+    //   currentIndex: currentindex,
+    //   onTap: (int index){
+    //     currentindex= index;
+    //     pageController?.jumpToPage(currentindex);
+    //     setState(() {
+    //
+    //     });
+    //   },
+    //   iconSize: 30,
+    //       items: [
+    //     BottomNavigationBarItem(icon: Icon(Icons.home , color: Colors.white,), label: 'Home',),
+    //     BottomNavigationBarItem(icon: Icon(Icons.shopping_bag, color: Colors.white,), label: 'Stats'),
+    //     BottomNavigationBarItem(icon: Icon(Icons.menu_outlined, color: Colors.white), label: 'Menu'),
+    //     BottomNavigationBarItem(icon: Icon(Icons.leaderboard, color: Colors.white), label: 'LeaderBoard'),
+    //     BottomNavigationBarItem(icon: Icon(Icons.public, color: Colors.white), label: 'Map'),
+    //   ]),
+    //   )
+    );
   }
   Widget buildIndicator(bool isSelected) {
     return Container(

@@ -9,6 +9,7 @@ import '../view/login_screen_2.dart';
 
 
 class Routes {
+  static String base_url = 'https://pbf-api.azurewebsites.net';
   static MaterialPageRoute generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RoutesName.SignUp:

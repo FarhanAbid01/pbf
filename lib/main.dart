@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pbf_app/view/signup_screen.dart';
 import 'package:pbf_app/utils/routes.dart';
 import 'package:pbf_app/utils/routes_name.dart';
 
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(360, 690),
+      designSize: const Size(360, 690),
     minTextAdapt: true,
     splitScreenMode: true,
     builder: (context , child) {

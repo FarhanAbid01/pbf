@@ -27,7 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                   Text('Join the Federation',style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 35
+                    fontSize: 35,
+                    fontFamily: 'BebasNeue'
                   ),),
                     SizedBox(
                       height: 5.h,
