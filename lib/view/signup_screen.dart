@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pbf_app/auth_viewModel.dart';
 import 'package:pbf_app/services/login_services.dart';
 import 'package:pbf_app/utils/routes_name.dart';
 import 'package:pbf_app/utils/ultis.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -34,6 +38,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authViewMode = Provider.of<AuthViewModel>(context, listen: false);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -163,14 +168,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 context);
                           } else {
                             if (_key.currentState!.validate()) {
-                              signUP(
-                                  context: context,
-                                  nameController: nameController,
-                                  usernameController: usernameController,
-                                  emailController: emailController,
-                                  passwordController: passwordController,
-                                  confirmPasswordController:
-                                      confirmPasswordController);
+                              var data = {
+                                "Name": nameController.text,
+                                "UserName": usernameController.text,
+                                "Email": emailController.text,
+                                "Password": passwordController.text,
+                                'ConfirmPassword':
+                                    confirmPasswordController.text,
+                              };
+
+                              authViewMode.registerApi(data, context);
+                              log('have hit hte aPIiiii');
                             }
                           }
                         },

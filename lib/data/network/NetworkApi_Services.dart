@@ -34,15 +34,15 @@ class NetworkApiService extends BaseApiServices {
       throw FetchDataException('No Internet Connection');
     }
 
-    log("res : " + responseJson);
+    log("res : " + responseJson.toString());
     return responseJson;
   }
 
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
-        dynamic responseJson = response.body;
-        log('User got saved succefully');
+        log('inner 200');
+        dynamic responseJson = jsonDecode(response.body);
         return responseJson;
       case 400:
         throw BadRequestException(response.body.toString());

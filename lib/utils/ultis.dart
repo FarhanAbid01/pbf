@@ -12,7 +12,8 @@ class Utils {
     showFlushbar(
         context: context,
         flushbar: Flushbar(
-          duration: Duration(seconds: 1),
+          flushbarPosition: FlushbarPosition.TOP,
+          duration: Duration(seconds: 2),
           message: message,
           messageColor: Colors.red,
         )..show(context));
