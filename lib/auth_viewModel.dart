@@ -1,4 +1,5 @@
-import 'dart:developer';
+import 'dart:convert';
+import 'dart:developer' as msg;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,35 +15,42 @@ class AuthViewModel with ChangeNotifier {
     myRepo
         .registerAccount(data)
         .then((value) => {
-              // if (kDebugMode) {log('succedd' + value.toString())
-
-              // },
-              v = value as Map<String, dynamic>,
-              log('this is tokennn'),
-              //    Navigator.pushNamed(context, RoutesName.SignIn2)
+              if (kDebugMode) {msg.log('succedd' + value.toString())},
+              Navigator.pushNamed(context, RoutesName.SignIn2)
             })
         .onError((error, stackTrace) => {
               if (kDebugMode)
                 {
                   Utils.FlushBar(error.toString(), context),
-                  log('this errror : ' + error.toString())
+                  msg.log('this errror : ' + error.toString())
                 }
             });
   }
 
   Future<void> loginApi(dynamic data, BuildContext context) async {
-    myRepo.LoginAccount(data)
-        .then((value) => {
-              if (kDebugMode) {log('succedd' + value.toString())},
-              log('this is token: ${value['access_token']}'),
-              // Navigator.pushNamed(context, RoutesName.Home)
-            })
-        .onError((error, stackTrace) => {
-              if (kDebugMode)
-                {
-                  Utils.FlushBar(error.toString(), context),
-                  log('this errror : ' + error.toString())
-                }
-            });
+    myRepo.LoginAccount(data).then((value) {
+      if (kDebugMode) {
+        msg.log('succedd' + value.toString());
+      }
+      var token = json.decode(value);
+
+      msg.log('this is token: ${token['access_token']}');
+      Navigator.pushNamed(context, RoutesName.Home);
+    }).onError((error, stackTrace) {
+      if (kDebugMode) {
+        Utils.FlushBar(error.toString(), context);
+        msg.log('this errror : ' + error.toString());
+      }
+    });
+    // .then((value) => {
+
+    //       if (kDebugMode) {log('succedd' + value.toString())},
+
+    //       log('this is token: ${value['access_token']}'),
+    //       // Navigator.pushNamed(context, RoutesName.Home)
+    //     })
+    // .onError((error, stackTrace) => {
+    //
+    //     });
   }
 }
