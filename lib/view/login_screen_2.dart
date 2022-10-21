@@ -45,7 +45,7 @@ class _LogInScreen2State extends State<LogInScreen2> {
               child: Center(
                 child: Form(
                   key: _key,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  autovalidateMode: AutovalidateMode.disabled,
                   child: Column(
                     children: [
                       Image.asset('assets/login_screen.png'),
@@ -60,8 +60,13 @@ class _LogInScreen2State extends State<LogInScreen2> {
                           controller: usernameController,
                           validator: requiredValidator,
                           decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(top: 10),
                               hintText: 'username',
                               hintStyle: TextStyle(color: Colors.white),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide:
+                                  BorderSide(color: Color(0xFF434343))),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
                                   borderSide:
@@ -79,8 +84,13 @@ class _LogInScreen2State extends State<LogInScreen2> {
                           controller: passwordController,
                           validator: passwordValidator,
                           decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(top: 10),
                               hintText: 'password',
                               hintStyle: TextStyle(color: Colors.white),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide:
+                                  BorderSide(color: Color(0xFF434343))),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
                                   borderSide:

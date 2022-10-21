@@ -46,7 +46,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       backgroundColor: Colors.black,
       body: Form(
         key: _key,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
+        autovalidateMode: AutovalidateMode.disabled,
         child: Column(
           children: [
             Spacer(flex: 2),
@@ -64,15 +64,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         width: width * 0.6,
                         child: TextFormField(
                           textAlign: TextAlign.center,
-                          controller: nameController,
-                          validator: requiredValidator,
+                          style: TextStyle(color: Colors.white),
                           decoration: InputDecoration(
-                              hintText: 'name',
-                              hintStyle: TextStyle(color: Colors.white),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide:
-                                      BorderSide(color: Color(0xFF434343)))),
+                            contentPadding: EdgeInsets.only(top: 10),
+                            hintText: "name",
+                            hintStyle: TextStyle(color: Colors.white,),
+                            fillColor: Colors.white,
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: BorderSide(color: Color(0xFF434343))),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: BorderSide(color: Color(0xFF434343))),
+                          ),
+                          validator:requiredValidator,
                         ),
                       ),
                       SizedBox(
@@ -86,8 +91,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           controller: usernameController,
                           validator: requiredValidator,
                           decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(top: 10),
                               hintText: 'username',
                               hintStyle: TextStyle(color: Colors.white),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide:
+                                  BorderSide(color: Color(0xFF434343))),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
                                   borderSide:
@@ -109,8 +119,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 errorText: 'enter a valid email address')
                           ]),
                           decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(top: 10),
                               hintText: 'email',
                               hintStyle: TextStyle(color: Colors.white),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide:
+                                  BorderSide(color: Color(0xFF434343))),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
                                   borderSide:
@@ -124,12 +139,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: height * 0.06,
                         width: width * 0.6,
                         child: TextFormField(
+
                           textAlign: TextAlign.center,
                           controller: passwordController,
                           validator: passwordValidator,
                           decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(top: 10),
                               hintText: 'password',
                               hintStyle: TextStyle(color: Colors.white),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide:
+                                  BorderSide(color: Color(0xFF434343))),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
                                   borderSide:
@@ -149,8 +170,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             requiredValidator,
                           ]),
                           decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(top: 10),
                               hintText: 're-enter password',
                               hintStyle: TextStyle(color: Colors.white),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide:
+                                  BorderSide(color: Color(0xFF434343))),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
                                   borderSide:

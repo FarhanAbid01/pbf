@@ -27,7 +27,7 @@ class AuthViewModel with ChangeNotifier {
 
   Future<void> loginApi(dynamic data, BuildContext context) async {
     myRepo.loginAccount(data).then((value) async {
-      if (kDebugMode) {}
+
       var data = json.decode(value);
       Token token = Token.fromJson(data);
       final userPreferences =
@@ -36,9 +36,9 @@ class AuthViewModel with ChangeNotifier {
 
       Navigator.pushNamed(context, RoutesName.onBording);
     }).onError((error, stackTrace) {
-      if (kDebugMode) {
+
         Utils.FlushBar(error.toString(), context);
-      }
+
     });
     // .then((value) => {
 
