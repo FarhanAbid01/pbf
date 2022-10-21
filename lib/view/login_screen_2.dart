@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:pbf_app/auth_viewModel.dart';
+import 'package:pbf_app/view_Model/auth_viewModel.dart';
 import 'package:pbf_app/utils/routes_name.dart';
 import 'package:provider/provider.dart';
 
@@ -37,15 +37,15 @@ class _LogInScreen2State extends State<LogInScreen2> {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Form(
-        key: _key,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        child: Column(
-          children: [
-            Spacer(flex: 2),
-            Expanded(
-                flex: 5,
-                child: Center(
+      body: Column(
+        children: [
+          Spacer(flex: 2),
+          Expanded(
+              flex: 5,
+              child: Center(
+                child: Form(
+                  key: _key,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                     children: [
                       Image.asset('assets/login_screen.png'),
@@ -56,11 +56,11 @@ class _LogInScreen2State extends State<LogInScreen2> {
                         height: height * 0.06,
                         width: width * 0.6,
                         child: TextFormField(
+                          textAlign: TextAlign.center,
                           controller: usernameController,
+                          validator: requiredValidator,
                           decoration: InputDecoration(
                               hintText: 'username',
-                              contentPadding:
-                                  EdgeInsets.only(left: width * 0.21),
                               hintStyle: TextStyle(color: Colors.white),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
@@ -75,11 +75,11 @@ class _LogInScreen2State extends State<LogInScreen2> {
                         height: height * 0.06,
                         width: width * 0.6,
                         child: TextFormField(
+                          textAlign: TextAlign.center,
                           controller: passwordController,
+                          validator: passwordValidator,
                           decoration: InputDecoration(
                               hintText: 'password',
-                              contentPadding:
-                                  EdgeInsets.only(left: width * 0.21),
                               hintStyle: TextStyle(color: Colors.white),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
@@ -146,9 +146,9 @@ class _LogInScreen2State extends State<LogInScreen2> {
                           ))
                     ],
                   ),
-                )),
-          ],
-        ),
+                ),
+              )),
+        ],
       ),
     );
   }

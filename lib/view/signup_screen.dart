@@ -3,7 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pbf_app/auth_viewModel.dart';
+import 'package:pbf_app/utils/zbot_toast.dart';
+import 'package:pbf_app/view_Model/auth_viewModel.dart';
 import 'package:pbf_app/services/login_services.dart';
 import 'package:pbf_app/utils/routes_name.dart';
 import 'package:pbf_app/utils/ultis.dart';
@@ -160,7 +161,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 10.h,
                       ),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          ZBotToast.loadingShow();
                           if (confirmPasswordController.text !=
                               passwordController.text) {
                             return Utils.FlushBar(
@@ -177,10 +179,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     confirmPasswordController.text,
                               };
 
-                              authViewMode.registerApi(data, context);
-                              log('have hit hte aPIiiii');
+                              await authViewMode.registerApi(data, context);
                             }
                           }
+                          ZBotToast.loadingClose();
                         },
                         child: Container(
                             height: height * 0.06,

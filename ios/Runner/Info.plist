@@ -8,6 +8,10 @@
 		<string>Pbf App</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
+		 <key>NSPhotoLibraryUsageDescription</key>
+    	<string>Please grant photo gallery access</string>
+    	<key>NSCameraUsageDescription</key>
+    	<string>Please grant camera access</string>
 		<key>CFBundleIdentifier</key>
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 		<key>CFBundleInfoDictionaryVersion</key>

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:http/http.dart';
+import 'package:pbf_app/Constant/token.dart';
 
 import '../app_exceptions.dart';
 import 'BaseApi_Services.dart';
@@ -13,8 +14,8 @@ class NetworkApiService extends BaseApiServices {
     dynamic responseJson;
     try {
       final response = await http.get(Uri.parse(url), headers: {
-        "Authorization": "Bearer ${''}"
-      }).timeout(Duration(seconds: 10));
+        "Authorization": "Bearer ${GetToken.token}"
+      }).timeout(const Duration(seconds: 10));
       responseJson = returnResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet Connection');
@@ -27,13 +28,14 @@ class NetworkApiService extends BaseApiServices {
   Future getPostApiResponse(String url, dynamic data) async {
     dynamic responseJson;
     try {
-      Response response =
-          await post(Uri.parse(url), body: data).timeout(Duration(seconds: 10));
+      Response response = await post(Uri.parse(url), body: data)
+          .timeout(const Duration(seconds: 10));
       responseJson = returnResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet Connection');
     }
 
+    // ignore: prefer_interpolation_to_compose_strings
     log("res : " + responseJson);
     return responseJson;
   }

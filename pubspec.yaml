@@ -47,6 +47,8 @@ dependencies:
   another_flushbar: ^1.12.29
   form_field_validator: ^1.1.0
   provider: ^6.0.4
+  get: ^4.6.5
+  bot_toast: ^4.0.3
 
 
 
@@ -56,6 +58,7 @@ dev_dependencies:
     sdk: flutter
   flutter_native_splash: ^2.2.9
   flutter_launcher_icons: ^0.10.0
+  flutter_lints: ^2.0.1
 flutter_native_splash:
   color: "#0f0f0f"
   image: assets/Splash_logo.png

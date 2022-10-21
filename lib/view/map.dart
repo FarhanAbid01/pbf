@@ -10,13 +10,13 @@ class mapScreen extends StatefulWidget {
 }
 
 class _mapScreenState extends State<mapScreen> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     launchUrls();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container();

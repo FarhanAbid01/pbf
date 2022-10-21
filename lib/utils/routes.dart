@@ -7,21 +7,25 @@ import 'package:pbf_app/utils/routes_name.dart';
 
 import '../view/login_screen_2.dart';
 
-
 class Routes {
   static String base_url = 'https://pbf-api.azurewebsites.net';
   static MaterialPageRoute generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RoutesName.SignUp:
-        return MaterialPageRoute(builder: (BuildContext context)=> const SignUpScreen());
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const SignUpScreen());
       case RoutesName.SignIn:
-        return MaterialPageRoute(builder: (BuildContext context)=> const LoginScreen());
-         case RoutesName.SignIn2:
-         return MaterialPageRoute(builder: (BuildContext context)=> const LogInScreen2());
-       case RoutesName.onBording:
-        return MaterialPageRoute(builder: (BuildContext context)=> const onBoardingScreen());
-       case RoutesName.Home:
-         return MaterialPageRoute(builder: (BuildContext context)=> const HomeScreen());
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const LoginScreen());
+      case RoutesName.SignIn2:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const LogInScreen2());
+      case RoutesName.onBording:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const onBoardingScreen());
+      case RoutesName.Home:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const HomeScreen());
       // case RoutesName.Verb:
       //   return MaterialPageRoute(builder: (BuildContext context)=> const VerbsScreen());
       // case RoutesName.Worship:
@@ -36,9 +40,9 @@ class Routes {
       //   return MaterialPageRoute(builder: (BuildContext context)=> const FaithScreen());
 
       default:
-        return MaterialPageRoute(builder: (_){
-           return const Scaffold(
-           body:  Center(
+        return MaterialPageRoute(builder: (_) {
+          return const Scaffold(
+            body: Center(
               child: Text('No Route Defined'),
             ),
           );
