@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
           splitScreenMode: true,
           builder: (context, child) {
             return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
                 builder: BotToastInit(),
                 navigatorObservers: [BotToastNavigatorObserver()],
                 title: 'Flutter Demo',
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
                   brightness: Brightness.dark,
                 ),
                 themeMode: ThemeMode.dark,
-                initialRoute: RoutesName.SignUp,
+                initialRoute: RoutesName.Home,
                 onGenerateRoute: Routes.generateRoute);
           },
         ));

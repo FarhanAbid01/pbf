@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:pbf_app/utils/zbot_toast.dart';
 import 'package:pbf_app/view/map.dart';
 
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 20.h,
             ),
             Expanded(
-                flex: 6,
+                flex: 4,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Column(
@@ -52,21 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            height: height * 0.06,
-                            width: width * 0.75,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.only(top: 3, left: 8),
-                                  hintText: 'search the federation',
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                      borderSide:
-                                          BorderSide(color: Color(0xFF434343))),
-                                  suffixIcon: Icon(Icons.search)),
-                            ),
-                          ),
+                         const Icon(Icons.search,color:Colors.white,size:40),
+                          Image.asset("assets/pb_text_logo.png"),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: SizedBox(
@@ -88,83 +76,152 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(15),
                           ),
+                          margin: EdgeInsets.symmetric(horizontal: 5.w),
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                    flex: 2,
-                                    child: Image.asset('assets/QRcode.png')),
-                                Spacer(
-                                  flex: 1,
-                                ),
-                                Expanded(
-                                  flex: 12,
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          userVm.user?.name ?? '',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 35.sp,
-                                              fontFamily: 'BebasNeue'),
+                            padding:  EdgeInsets.symmetric(vertical: 1.h,horizontal: 7.w),
+                            child:
+                                 Row(crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(flex:3,
+                                        child: Padding(
+                                          padding:  EdgeInsets.symmetric(vertical: 7.0),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  'SOLDRZ',
+                                                  style: TextStyle(
+                                                    fontSize: 32.sp,
+                                                    fontFamily: 'BebasNeue',
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 5.h,
+                                              ),
+                                              Text(
+                                                userVm.user?.name ?? 'User name',
+                                                style: TextStyle(
+                                                  fontSize: 15.sp,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'SOLDRZ',
-                                              style: TextStyle(
-                                                fontSize: 32.sp,
-                                                fontFamily: 'BebasNeue',
+                                      ),
+                                     Container(
+                                       color: Colors.white,
+                                       width: 2,
+                                     ),
+                                      Expanded(
+                                        child:  Padding(
+                                          padding:  EdgeInsets.symmetric(vertical: 7.0),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  'GP',
+                                                  style: TextStyle(
+                                                    fontSize: 32.sp,
+                                                    fontFamily: 'BebasNeue',
+                                                  ),
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(
-                                              width: 10.w,
-                                            ),
-                                            Text(
-                                              '#',
-                                              style: TextStyle(fontSize: 28.sp),
-                                            ),
-                                            Text(
-                                              '12',
-                                              style: TextStyle(
-                                                fontSize: 32.sp,
-                                                fontFamily: 'BebasNeue',
+                                              SizedBox(
+                                                height: 5.h,
                                               ),
-                                            ),
-                                            SizedBox(
-                                              width: 10.w,
-                                            ),
-                                            Text(
-                                              'WINS:179',
-                                              style: TextStyle(
-                                                fontSize: 32.sp,
-                                                fontFamily: 'BebasNeue',
+                                              Text(
+                                                "192",
+                                                style: TextStyle(
+                                                  fontSize: 15.sp,
+                                                  color: Colors.grey,
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                      Container(
+                                        color: Colors.white,
+                                        width: 2,
+                                      ),
+                                      Expanded(
+                                        child:  Padding(
+                                          padding:  EdgeInsets.symmetric(vertical: 7.0),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  'W',
+                                                  style: TextStyle(
+                                                    fontSize: 32.sp,
+                                                    fontFamily: 'BebasNeue',
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 5.h,
+                                              ),
+                                              Text(
+                                                "78",
+                                                style: TextStyle(
+                                                  fontSize: 15.sp,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        color: Colors.white,
+                                        width: 2,
+                                      ),
+                                      Expanded(
+                                        child:  Padding(
+                                          padding:  EdgeInsets.symmetric(vertical: 7.0),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                  child:  Padding(
+                                                    padding:  EdgeInsets.only(bottom: 20.h),
+                                                    child: Icon(Icons.lock,color:Colors.white,size: 32.sp,),
+                                                  )),
+                                              SizedBox(
+                                                height: 5.h,
+                                              ),
+                                              Text(
+                                                "78",
+                                                style: TextStyle(
+                                                  fontSize: 15.sp,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+
+
+                                    ],
                                   ),
-                                )
-                              ],
-                            ),
+
                           ),
                         ),
                       )
                     ],
                   ),
                 )),
+            SizedBox(height: 5.h,),
             Expanded(
               flex: 15,
               child: PageView(
@@ -181,87 +238,74 @@ class _HomeScreenState extends State<HomeScreen> {
                           'RECENT GAMES',
                           style: TextStyle(
                             fontSize: 40.sp,
-                            fontWeight: FontWeight.bold,
                             fontFamily: 'BebasNeue',
                           ),
                         ),
                         SizedBox(
-                          height: 10.h,
+                          height: 5.h,
                         ),
-                        ListView.builder(
-                            physics: ScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            itemCount: 12,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(
-                                    bottom: 8.0, left: 16, right: 16),
-                                child: Container(
+                         ListView.builder(
+                              physics: ScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: 12,
+                              itemBuilder: (context, index) {
+                                return Container(
                                   height: height * 0.11,
-                                  width: width * 0.9,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(color: Colors.white)),
-                                  child: Stack(
+                                     ),
+                                  child: Stack(alignment: Alignment.center,
                                     children: [
                                       Container(
                                         child: Image.asset(
                                           'assets/wallpaper.png',
-                                          fit: BoxFit.contain,
+                                          fit: BoxFit.cover,
+                                          height: 80,
                                         ),
                                       ),
-                                      Row(
-                                        children: [
-                                          Spacer(
-                                            flex: 1,
-                                          ),
-                                          Expanded(
-                                            flex: 5,
-                                            child: Column(
+                                    Row(
+                                          children: [
+                                            Spacer(flex: 1,),
+                                            Column(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                                  MainAxisAlignment.center,
                                               children: [
-                                                Expanded(
-                                                  child: Align(
-                                                    alignment: Alignment.center,
-                                                    child: Text(
-                                                      'Center flag -castle '
-                                                          .toUpperCase(),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 25.sp,
-                                                        fontFamily: 'BebasNeue',
-                                                      ),
+                                                Align(
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    'Center flag -castle '
+                                                        .toUpperCase(),
+                                                    textAlign:
+                                                        TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 22.sp,
+                                                      fontFamily: 'BebasNeue',
                                                     ),
                                                   ),
                                                 ),
-                                                Expanded(
-                                                  child: Text(
-                                                    'Cousins Paintball, NJ',
-                                                    style: TextStyle(
-                                                      fontSize: 17.sp,
-                                                      fontFamily: 'Segoe UI',
-                                                    ),
+                                                Text(
+                                                  'Cousins Paintball, NJ',
+                                                  style: TextStyle(
+                                                    fontSize: 12.sp,
                                                   ),
                                                 )
                                               ],
                                             ),
-                                          ),
-                                          Expanded(
-                                              flex: 1,
+                                            Expanded(
                                               child: Image.asset(
-                                                  'assets/window.png'))
-                                        ],
-                                      ),
+                                                  'assets/window.png'),
+                                            )
+                                          ],
+                                        ),
+
                                     ],
                                   ),
-                                ),
-                              );
-                            })
+                                );
+                              }),
+
                       ],
                     ),
                   ),

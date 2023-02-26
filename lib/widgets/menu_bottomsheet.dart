@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:pbf_app/view/badges_screen.dart';
 import 'package:pbf_app/view/maps_screen.dart';
 import 'package:pbf_app/view/squad_screen.dart';
@@ -18,7 +19,7 @@ void menubottomSheet({
             children: [
               TextButton(
                   onPressed: () {
-                    showprfileBottomsheet(context: context, onPressed: () {});
+                    Get.to(ProfileScreen());
                   },
                   child: Text(
                     'PROFILE',
