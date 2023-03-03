@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pbf_app/utils/zbot_toast.dart';
+import 'package:pbf_app/view/home_search_screen.dart';
 import 'package:pbf_app/view/map.dart';
 
 import 'package:pbf_app/view_Model/user_viewModel.dart';
@@ -53,7 +54,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                         const Icon(Icons.search,color:Colors.white,size:40),
+                         GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeSearchScreen(),));
+                          },
+                          child: const Icon(Icons.search,color:Colors.white,size:40)),
                           Image.asset("assets/pb_text_logo.png"),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
@@ -87,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     children: [
                                       Expanded(flex:3,
                                         child: Padding(
-                                          padding:  EdgeInsets.symmetric(vertical: 7.0),
+                                          padding:  const EdgeInsets.symmetric(vertical: 7.0),
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             mainAxisAlignment: MainAxisAlignment.center,
@@ -121,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                      ),
                                       Expanded(
                                         child:  Padding(
-                                          padding:  EdgeInsets.symmetric(vertical: 7.0),
+                                          padding:  const EdgeInsets.symmetric(vertical: 7.0),
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
@@ -154,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                       Expanded(
                                         child:  Padding(
-                                          padding:  EdgeInsets.symmetric(vertical: 7.0),
+                                          padding:  const EdgeInsets.symmetric(vertical: 7.0),
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
@@ -187,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                       Expanded(
                                         child:  Padding(
-                                          padding:  EdgeInsets.symmetric(vertical: 7.0),
+                                          padding:  const EdgeInsets.symmetric(vertical: 7.0),
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
@@ -245,7 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 5.h,
                         ),
                          ListView.builder(
-                              physics: ScrollPhysics(),
+                              physics: const ScrollPhysics(),
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
                               itemCount: 12,
@@ -266,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     Row(
                                           children: [
-                                            Spacer(flex: 1,),
+                                            const Spacer(flex: 1,),
                                             Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
@@ -324,7 +329,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 10.h,
                         ),
                         ListView.builder(
-                            physics: ScrollPhysics(),
+                            physics: const ScrollPhysics(),
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
                             itemCount: 12,
@@ -369,13 +374,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(
+                                              const Text(
                                                 'Win 10 games on Castle',
                                                 style: TextStyle(
                                                   fontFamily: 'Segoe UI',
                                                 ),
                                               ),
-                                              Text('5/10'),
+                                              const Text('5/10'),
                                             ],
                                           ),
                                         ),
@@ -402,7 +407,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontFamily: 'BebasNeue',
                               ),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.leaderboard,
                               size: 30,
                             )
@@ -412,7 +417,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 10.h,
                         ),
                         ListView.builder(
-                            physics: ScrollPhysics(),
+                            physics: const ScrollPhysics(),
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
                             itemCount: 12,
@@ -488,7 +493,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                  mapScreen()
+                  const mapScreen()
                 ],
               ),
             ),
@@ -509,7 +514,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            Spacer(
+            const Spacer(
               flex: 1,
             ),
             Align(
@@ -525,7 +530,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () {
                                 pageController?.jumpToPage(0);
                               },
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.home,
                                 size: 30,
                               )),
@@ -547,7 +552,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () {
                                 pageController?.jumpToPage(1);
                               },
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.shopping_bag,
                                 size: 30,
                               )),
@@ -569,7 +574,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () {
                                 menubottomSheet(context: context);
                               },
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.menu,
                                 size: 30,
                               )),
@@ -591,7 +596,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () {
                                 pageController?.jumpToPage(2);
                               },
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.leaderboard,
                                 size: 30,
                               )),
@@ -613,7 +618,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () {
                                 pageController?.jumpToPage(3);
                               },
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.public,
                                 size: 30,
                               )),
